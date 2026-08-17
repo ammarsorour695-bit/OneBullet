@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONEBULLET - Tactical Sniper Arena</title>
+    <link rel="stylesheet" href="client/styles/main.css">
+    <link rel="stylesheet" href="client/styles/menu.css">
+    <link rel="stylesheet" href="client/styles/hud.css">
+    <link rel="stylesheet" href="client/styles/lobby.css">
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="mainMenu" class="menu-container">
+        <div class="menu-bg"></div>
+        <div class="menu-content">
+            <div class="logo-container">
+                <h1 class="logo-text">ONE<span class="logo-accent">BULLET</span></h1>
+                <p class="logo-subtitle">Tactical Sniper Arena</p>
+            </div>
+            
+            <nav class="main-nav">
+                <button class="menu-btn primary" data-action="playOnline">
+                    <span class="btn-icon">🎮</span>
+                    <span class="btn-text">PLAY ONLINE</span>
+                </button>
+                <button class="menu-btn" data-action="playLocal">
+                    <span class="btn-icon">💻</span>
+                    <span class="btn-text">PLAY LOCAL</span>
+                </button>
+                <button class="menu-btn" data-action="loadout">
+                    <span class="btn-icon">🎒</span>
+                    <span class="btn-text">LOADOUT</span>
+                </button>
+                <button class="menu-btn" data-action="skins">
+                    <span class="btn-icon">✨</span>
+                    <span class="btn-text">SKINS</span>
+                </button>
+                <button class="menu-btn" data-action="missions">
+                    <span class="btn-icon">📋</span>
+                    <span class="btn-text">MISSIONS</span>
+                </button>
+                <button class="menu-btn" data-action="profile">
+                    <span class="btn-icon">👤</span>
+                    <span class="btn-text">PROFILE</span>
+                </button>
+                <button class="menu-btn" data-action="settings">
+                    <span class="btn-icon">⚙️</span>
+                    <span class="btn-text">SETTINGS</span>
+                </button>
+            </nav>
+            
+            <div class="player-info">
+                <div class="player-avatar" id="menuPlayerAvatar"></div>
+                <div class="player-details">
+                    <span class="player-name" id="menuPlayerName">Operative</span>
+                    <span class="player-level" id="menuPlayerLevel">Level 1</span>
+                </div>
+                <div class="xp-bar">
+                    <div class="xp-fill" id="menuXPFill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Online Lobby -->
+    <div id="onlineLobby" class="menu-container hidden">
+        <div class="lobby-container">
+            <div class="lobby-header">
+                <h2>LOBBY</h2>
+                <button class="back-btn" data-action="backToMenu">← Back</button>
+            </div>
+            
+            <div class="lobby-content">
+                <div class="lobby-panel">
+                    <h3>Players</h3>
+                    <div class="player-list" id="lobbyPlayerList"></div>
+                </div>
+                
+                <div class="lobby-panel">
+                    <h3>Match Settings</h3>
+                    <div class="settings-form">
+                        <label>
+                            Map
+                            <select id="lobbyMapSelect">
+                                <option value="desertOutpost">Desert Outpost</option>
+                                <option value="industrialYard">Industrial Yard</option>
+                                <option value="mountainBase">Mountain Base</option>
+                                <option value="cityRooftops">City Rooftops</option>
+                            </select>
+                        </label>
+                        <label>
+                            Mode
+                            <select id="lobbyModeSelect">
+                                <option value="freeForAll">Free For All</option>
+                                <option value="teamDeathmatch">Team Deathmatch</option>
+                                <option value="elimination">Elimination</option>
+                            </select>
+                        </label>
+                        <label>
+                            Max Players
+                            <input type="number" id="lobbyMaxPlayers" min="2" max="12" value="8">
+                        </label>
+                    </div>
+                    <button class="menu-btn primary" id="lobbyReadyBtn">READY</button>
+                    <button class="menu-btn" id="lobbyStartBtn" disabled>START MATCH</button>
+                </div>
+                
+                <div class="lobby-panel chat-panel">
+                    <h3>Chat</h3>
+                    <div class="chat-messages" id="lobbyChatMessages"></div>
+                    <div class="chat-input-container">
+                        <input type="text" id="lobbyChatInput" placeholder="Type a message..." maxlength="200">
+                        <button id="lobbyChatSend">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Local Play Setup -->
+    <div id="localSetup" class="menu-container hidden">
+        <div class="setup-container">
+            <div class="setup-header">
+                <h2>LOCAL MATCH</h2>
+                <button class="back-btn" data-action="backToMenu">← Back</button>
+            </div>
+            
+            <div class="setup-form">
+                <label>
+                    Map
+                    <select id="localMapSelect">
+                        <option value="desertOutpost">Desert Outpost</option>
+                        <option value="industrialYard">Industrial Yard</option>
+                        <option value="mountainBase">Mountain Base</option>
+                        <option value="cityRooftops">City Rooftops</option>
+                    </select>
+                </label>
+                <label>
+                    Game Mode
+                    <select id="localModeSelect">
+                        <option value="freeForAll">Free For All</option>
+                        <option value="teamDeathmatch">Team Deathmatch</option>
+                        <option value="elimination">Elimination</option>
+                        <option value="practice">Practice</option>
+                    </select>
+                </label>
+                <label>
+                    Bot Count
+                    <input type="range" id="localBotCount" min="0" max="11" value="5">
+                    <span id="localBotCountValue">5</span>
+                </label>
+                <label>
+                    Difficulty
+                    <select id="localDifficulty">
+                        <option value="easy">Easy</option>
+                        <option value="normal" selected>Normal</option>
+                        <option value="hard">Hard</option>
+                        <option value="elite">Elite</option>
+                    </select>
+                </label>
+                <label>
+                    Time Limit
+                    <select id="localTimeLimit">
+                        <option value="0">No Limit</option>
+                        <option value="300">5 Minutes</option>
+                        <option value="600" selected>10 Minutes</option>
+                        <option value="900">15 Minutes</option>
+                    </select>
+                </label>
+                <label>
+                    Score Limit
+                    <select id="localScoreLimit">
+                        <option value="0">No Limit</option>
+                        <option value="10">10 Kills</option>
+                        <option value="20" selected>20 Kills</option>
+                        <option value="30">30 Kills</option>
+                    </select>
+                </label>
+                <button class="menu-btn primary" id="localStartBtn">START MATCH</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loadout Screen -->
+    <div id="loadoutScreen" class="menu-container hidden">
+        <div class="loadout-container">
+            <div class="loadout-header">
+                <h2>LOADOUT</h2>
+                <button class="back-btn" data-action="backToMenu">← Back</button>
+            </div>
+            
+            <div class="loadout-content">
+                <div class="loadout-preview">
+                    <div class="preview-model" id="loadoutPreview"></div>
+                </div>
+                
+                <div class="loadout-slots">
+                    <div class="loadout-slot">
+                        <label>Weapon</label>
+                        <div class="slot-item equipped">
+                            <span class="item-name">ONEBULLET Sniper</span>
+                            <span class="item-skin" id="loadoutWeaponSkin">Default</span>
+                        </div>
+                        <button class="menu-btn small" data-action="changeWeaponSkin">Change Skin</button>
+                    </div>
+                    
+                    <div class="loadout-slot">
+                        <label>Character</label>
+                        <div class="slot-item equipped">
+                            <span class="item-name" id="loadoutCharacter">Standard Operative</span>
+                        </div>
+                        <button class="menu-btn small" data-action="changeCharacter">Change</button>
+                    </div>
+                    
+                    <div class="loadout-slot">
+                        <label>Crosshair</label>
+                        <select id="loadoutCrosshair">
+                            <option value="dot">Dot</option>
+                            <option value="circle">Circle</option>
+                            <option value="cross">Cross</option>
+                            <option value="sniper">Sniper</option>
+                            <option value="chevron">Chevron</option>
+                        </select>
+                    </div>
+                    
+                    <div class="loadout-slot">
+                        <label>Charm</label>
+                        <select id="loadoutCharm">
+                            <option value="none">None</option>
+                            <option value="dogtag">Dog Tag</option>
+                            <option value="coin">Lucky Coin</option>
+                            <option value="feather">Eagle Feather</option>
+                            <option value="skull">Skull Charm</option>
+                            <option value="dragon">Dragon Tooth</option>
+                        </select>
+                    </div>
+                    
+                    <div class="loadout-slot">
+                        <label>Banner</label>
+                        <select id="loadoutBanner">
+                            <option value="recruit">Recruit</option>
+                            <option value="operative">Operative</option>
+                            <option value="veteran">Veteran</option>
+                            <option value="elite">Elite</option>
+                            <option value="legend">Legend</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skins/Inventory Screen -->
+    <div id="inventoryScreen" class="menu-container hidden">
+        <div class="inventory-container">
+            <div class="inventory-header">
+                <h2>INVENTORY</h2>
+                <button class="back-btn" data-action="backToMenu">← Back</button>
+            </div>
+            
+            <div class="inventory-tabs">
+                <button class="tab-btn active" data-tab="weaponSkins">Weapon Skins</button>
+                <button class="tab-btn" data-tab="playerSkins">Player Skins</button>
+                <button class="tab-btn" data-tab="charms">Charms</button>
+                <button class="tab-btn" data-tab="banners">Banners</button>
+            </div>
+            
+            <div class="inventory-content">
+                <div class="inventory-grid" id="inventoryGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Missions Screen -->
+    <div id="missionsScreen" class="menu-container hidden">
+        <div class="missions-container">
+            <div class="missions-header">
+                <h2>MISSIONS</h2>
+                <button class="back-btn" data-action="backToMenu">← Back</button>
+            </div>
+            
+            <div class="missions-content">
+                <div class="missions-section">
+                    <h3>Daily Missions</h3>
+                    <div class="missions-list" id="dailyMissionsList"></div>
+                </div>
+                
+                <div class="missions-section">
+                    <h3>Weekly Challenges</h3>
+                    <div class="missions-list" id="weeklyMissionsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Screen -->
+    <div id="profileScreen" class="menu-container hidden">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h2>PROFILE</h2>
+                <button class="back-btn" data-action="backToMenu">← Back</button>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-card">
+                    <div class="profile-avatar" id="profileAvatar"></div>
+                    <div class="profile-info">
+                        <h3 id="profileName">Operative</h3>
+                        <span class="profile-level" id="profileLevel">Level 1</span>
+                        <div class="profile-banner" id="profileBanner"></div>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="statKills">0</span>
+                        <span class="stat-label">Kills</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="statDeaths">0</span>
+                        <span class="stat-label">Deaths</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="statMatches">0</span>
+                        <span class="stat-label">Matches</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="statWins">0</span>
+                        <span class="stat-label">Wins</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="statHeadshots">0</span>
+                        <span class="stat-label">Headshots</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="statAccuracy">0%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settingsScreen" class="menu-container hidden">
+        <div class="settings-container">
+            <div class="settings-header">
+                <h2>SETTINGS</h2>
+                <button class="back-btn" data-action="backToMenu">← Back</button>
+            </div>
+            
+            <div class="settings-content">
+                <div class="settings-section">
+                    <h3>Video</h3>
+                    <label>
+                        Sensitivity
+                        <input type="range" id="settingSensitivity" min="1" max="100" value="50">
+                    </label>
+                    <label>
+                        Field of View
+                        <input type="range" id="settingFOV" min="60" max="110" value="75">
+                    </label>
+                    <label>
+                        <input type="checkbox" id="settingShadows" checked>
+                        Shadows
+                    </label>
+                    <label>
+                        <input type="checkbox" id="settingParticles" checked>
+                        Particles
+                    </label>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Audio</h3>
+                    <label>
+                        Master Volume
+                        <input type="range" id="settingMasterVolume" min="0" max="100" value="80">
+                    </label>
+                    <label>
+                        Music Volume
+                        <input type="range" id="settingMusicVolume" min="0" max="100" value="50">
+                    </label>
+                    <label>
+                        SFX Volume
+                        <input type="range" id="settingSFXVolume" min="0" max="100" value="80">
+                    </label>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Gameplay</h3>
+                    <label>
+                        <input type="checkbox" id="settingAutoReload" checked>
+                        Auto Reload
+                    </label>
+                    <label>
+                        <input type="checkbox" id="settingHitMarkers" checked>
+                        Hit Markers
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Matchmaking Screen -->
+    <div id="matchmakingScreen" class="menu-container hidden">
+        <div class="matchmaking-container">
+            <div class="matchmaking-content">
+                <div class="spinner"></div>
+                <h2>SEARCHING FOR MATCH</h2>
+                <p id="matchmakingStatus">Finding players...</p>
+                <p class="queue-info">
+                    Map: <span id="mmMap">Random</span> | 
+                    Mode: <span id="mmMode">Any</span>
+                </p>
+                <button class="menu-btn" id="cancelMatchmaking">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="menu-container hidden">
+        <div class="loading-container">
+            <h2>LOADING</h2>
+            <div class="loading-bar">
+                <div class="loading-fill" id="loadingFill"></div>
+            </div>
+            <p id="loadingText">Loading map...</p>
+        </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="gameHUD" class="hud-container hidden">
+        <div class="hud-top">
+            <div class="score-display">
+                <span class="score-team-alpha" id="hudAlphaScore">0</span>
+                <span class="score-separator">-</span>
+                <span class="score-team-bravo" id="hudBravoScore">0</span>
+            </div>
+            <div class="timer-display" id="hudTimer">10:00</div>
+            <div class="mode-display" id="hudMode">Free For All</div>
+        </div>
+        
+        <div class="hud-center">
+            <div class="crosshair" id="hudCrosshair">
+                <div class="crosshair-dot"></div>
+                <div class="crosshair-line horizontal left"></div>
+                <div class="crosshair-line horizontal right"></div>
+                <div class="crosshair-line vertical top"></div>
+                <div class="crosshair-line vertical bottom"></div>
+            </div>
+            <div class="scope-overlay hidden" id="hudScope"></div>
+            <div class="hit-marker hidden" id="hudHitMarker"></div>
+            <div class="kill-feed" id="hudKillFeed"></div>
+        </div>
+        
+        <div class="hud-bottom">
+            <div class="health-display">
+                <div class="health-bar">
+                    <div class="health-fill" id="hudHealthFill"></div>
+                </div>
+                <span class="health-text" id="hudHealthText">100</span>
+            </div>
+            <div class="ammo-display">
+                <span class="ammo-current" id="hudAmmoCurrent">5</span>
+                <span class="ammo-separator">/</span>
+                <span class="ammo-reserve" id="hudAmmoReserve">30</span>
+                <div class="weapon-name" id="hudWeaponName">ONEBULLET</div>
+            </div>
+            <div class="info-display">
+                <div class="info-row">
+                    <span class="info-label">K/D:</span>
+                    <span class="info-value" id="hudKD">0/0</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Score:</span>
+                    <span class="info-value" id="hudScore">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hud-network">
+            <span class="ping-display" id="hudPing">-- ms</span>
+            <span class="fps-display" id="hudFPS">60 FPS</span>
+        </div>
+    </div>
+
+    <!-- Match End Screen -->
+    <div id="matchEndScreen" class="menu-container hidden">
+        <div class="matchend-container">
+            <div class="matchend-header">
+                <h1 id="matchEndTitle">VICTORY</h1>
+            </div>
+            
+            <div class="matchend-stats">
+                <div class="stat-row">
+                    <span class="stat-label">Kills</span>
+                    <span class="stat-value" id="endKills">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Deaths</span>
+                    <span class="stat-value" id="endDeaths">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Headshots</span>
+                    <span class="stat-value" id="endHeadshots">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Accuracy</span>
+                    <span class="stat-value" id="endAccuracy">0%</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">XP Earned</span>
+                    <span class="stat-value xp" id="endXP">+0</span>
+                </div>
+            </div>
+            
+            <div class="matchend-actions">
+                <button class="menu-btn primary" id="matchEndContinue">CONTINUE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Level Up Notification -->
+    <div id="levelUpNotification" class="notification hidden">
+        <div class="notification-content">
+            <h2>LEVEL UP!</h2>
+            <p class="level-from">Level <span id="levelUpFrom">1</span></p>
+            <p class="level-to">→ Level <span id="levelUpTo">2</span></p>
+            <p class="level-reward" id="levelUpReward">+ New Skin Unlocked!</p>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="gameContainer" class="hidden">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- Connection Status -->
+    <div id="connectionStatus" class="status-indicator hidden">
+        <span class="status-dot"></span>
+        <span class="status-text">Connecting...</span>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    
+    <script type="module" src="client/src/main.js"></script>
+</body>
+</html>
