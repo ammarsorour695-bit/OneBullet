@@ -10,6 +10,11 @@ __pycache__/
 *.so
 *.a
 *.out
+dist/
+build/
+target/
+coverage/
+htmlcov/
 
 # Dependencies
 node_modules/
@@ -23,6 +28,13 @@ venv/
 *.log
 *.tmp
 *.swp
+*.swo
+
+# Environment
+.env
+.env.local
+*.env.*
+.env.*
 
 # Editors
 .vscode/
@@ -72,4 +84,17 @@ target/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+# Python specific (if any Python files detected later)
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+.mypy_cache/
 ```
