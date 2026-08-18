@@ -5,12 +5,14 @@ node_modules/
 # Build artifacts
 dist/
 build/
+target/
 coverage/
 htmlcov/
 
 # Environment variables
 .env
 .env.local
+*.env.*
 .env.*
 
 # IDE and editor files
@@ -23,6 +25,7 @@ htmlcov/
 # Logs
 *.log
 
+# Python specific (if any Python files detected later)
 # OS generated files
 .DS_Store
 Thumbs.db
@@ -32,6 +35,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.Python
 .pytest_cache/
 .mypy_cache/
 ```

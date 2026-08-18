@@ -1,4 +1,9 @@
 // Network protocol definitions for ONEBULLET
+export const PROTOCOL = {
+    // Connection
+    CONNECT: 'connect',
+    WELCOME: 'welcome',
+    CONNECTED: 'connected',
 export const MESSAGE_TYPES = {
     // Connection
     CONNECT: 'connect',
@@ -22,6 +27,10 @@ export const MESSAGE_TYPES = {
     
     // Match
     MATCH_STATE: 'matchState',
+    MATCH_STARTING: 'matchStarting',
+    MATCH_STARTED: 'matchStarted',
+    MATCH_END: 'matchEnd',
+    MATCH_ENDED: 'matchEnded',
     MATCH_START: 'matchStart',
     MATCH_END: 'matchEnd',
     
@@ -35,6 +44,10 @@ export const MESSAGE_TYPES = {
     // Chat
     CHAT_MESSAGE: 'chatMessage',
     
+    // Lobby & Rooms
+    LOBBY_STATE: 'lobbyState',
+    ROOM_CREATE: 'roomCreate',
+    ROOM_CREATED: 'roomCreated',
     // Lobby
     LOBBY_STATE: 'lobbyState',
     ROOM_CREATE: 'roomCreate',
@@ -43,6 +56,8 @@ export const MESSAGE_TYPES = {
     ROOM_READY: 'roomReady',
     ROOM_START: 'roomStart',
     ROOM_CONFIG: 'roomConfig',
+    ROOM_CLOSED: 'roomClosed',
+    HOST_CHANGED: 'hostChanged',
     
     // Progression
     XP_UPDATE: 'xpUpdate',
@@ -51,6 +66,13 @@ export const MESSAGE_TYPES = {
     
     // Loadout
     LOADOUT_UPDATE: 'loadoutUpdate',
+    
+    // Errors
+    ERROR: 'error',
+};
+
+export const MESSAGE_TYPES = PROTOCOL; // Backwards compatibility
+
 };
 
 export function createMessage(type, data = {}) {
