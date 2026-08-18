@@ -4,6 +4,10 @@ export const PROTOCOL = {
     CONNECT: 'connect',
     WELCOME: 'welcome',
     CONNECTED: 'connected',
+export const MESSAGE_TYPES = {
+    // Connection
+    CONNECT: 'connect',
+    WELCOME: 'welcome',
     DISCONNECT: 'disconnect',
     
     // Player
@@ -27,6 +31,8 @@ export const PROTOCOL = {
     MATCH_STARTED: 'matchStarted',
     MATCH_END: 'matchEnd',
     MATCH_ENDED: 'matchEnded',
+    MATCH_START: 'matchStart',
+    MATCH_END: 'matchEnd',
     
     // Score
     SCORE_UPDATE: 'scoreUpdate',
@@ -42,6 +48,9 @@ export const PROTOCOL = {
     LOBBY_STATE: 'lobbyState',
     ROOM_CREATE: 'roomCreate',
     ROOM_CREATED: 'roomCreated',
+    // Lobby
+    LOBBY_STATE: 'lobbyState',
+    ROOM_CREATE: 'roomCreate',
     ROOM_JOIN: 'roomJoin',
     ROOM_LEAVE: 'roomLeave',
     ROOM_READY: 'roomReady',
@@ -63,6 +72,8 @@ export const PROTOCOL = {
 };
 
 export const MESSAGE_TYPES = PROTOCOL; // Backwards compatibility
+
+};
 
 export function createMessage(type, data = {}) {
     return {
