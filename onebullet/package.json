@@ -1,0 +1,19 @@
+{
+  "name": "onebullet",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["fps", "multiplayer", "sniper", "game"],
+  "author": "",
+  "license": "ISC",
+  "description": "ONEBULLET - One-shot sniper arena FPS",
+  "dependencies": {
+    "three": "^0.160.0",
+    "uuid": "^9.0.0",
+    "ws": "^8.16.0"
+  }
+}

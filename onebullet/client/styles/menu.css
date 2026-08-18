@@ -1,0 +1,595 @@
+/* ONEBULLET Menu Styles */
+
+/* Setup Forms */
+.setup-container,
+.loadout-container,
+.inventory-container,
+.missions-container,
+.profile-container,
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.setup-header,
+.loadout-header,
+.inventory-header,
+.missions-header,
+.profile-header,
+.settings-header,
+.lobby-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-bg-light);
+}
+
+.setup-header h2,
+.loadout-header h2,
+.inventory-header h2,
+.missions-header h2,
+.profile-header h2,
+.settings-header h2,
+.lobby-header h2 {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+}
+
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.setup-form label,
+.settings-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--color-text-dim);
+}
+
+.setup-form select,
+.setup-form input[type="number"],
+.settings-form select,
+.settings-form input[type="range"] {
+    padding: 0.75rem;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-bg-medium);
+    border-radius: 4px;
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: 1rem;
+}
+
+.setup-form input[type="range"],
+.settings-form input[type="range"] {
+    padding: 0;
+    height: 8px;
+}
+
+.setup-form select:focus,
+.setup-form input:focus,
+.settings-form select:focus,
+.settings-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+/* Lobby Styles */
+.lobby-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1000px;
+    width: 90%;
+    max-height: 90vh;
+}
+
+.lobby-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.lobby-panel {
+    padding: 1.5rem;
+    background: var(--color-bg-light);
+    border-radius: 8px;
+}
+
+.lobby-panel h3 {
+    margin-bottom: 1rem;
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.player-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.player-list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--color-bg-medium);
+    border-radius: 4px;
+}
+
+.player-list-item.ready {
+    border-left: 3px solid var(--color-success);
+}
+
+.player-list-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.player-list-info {
+    flex: 1;
+}
+
+.player-list-name {
+    font-weight: 600;
+}
+
+.player-list-level {
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+}
+
+.player-list-status {
+    font-size: 0.75rem;
+    color: var(--color-success);
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#lobbyChatMessages {
+    height: 200px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background: var(--color-bg-medium);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.chat-message {
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.chat-message.system {
+    color: var(--color-warning);
+}
+
+.chat-message .player-name {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.chat-message .timestamp {
+    color: var(--color-text-dim);
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#lobbyChatInput {
+    flex: 1;
+    padding: 0.5rem;
+    background: var(--color-bg-medium);
+    border: 1px solid var(--color-bg-light);
+    border-radius: 4px;
+    color: var(--color-text);
+}
+
+#lobbyChatSend {
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 4px;
+    color: var(--color-bg-dark);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Loadout */
+.loadout-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.loadout-preview {
+    background: var(--color-bg-light);
+    border-radius: 8px;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-model {
+    width: 200px;
+    height: 300px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+}
+
+.loadout-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.loadout-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.loadout-slot label {
+    color: var(--color-text-dim);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.slot-item {
+    padding: 1rem;
+    background: var(--color-bg-light);
+    border-radius: 4px;
+    border: 1px solid var(--color-bg-medium);
+}
+
+.slot-item.equipped {
+    border-color: var(--color-primary);
+}
+
+.item-name {
+    display: block;
+    font-weight: 600;
+}
+
+.item-skin {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+}
+
+/* Inventory */
+.inventory-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--color-bg-light);
+    padding-bottom: 1rem;
+}
+
+.tab-btn {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--color-text-dim);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: var(--color-text);
+}
+
+.tab-btn.active {
+    border-bottom-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.inventory-item {
+    position: relative;
+    padding: 1rem;
+    background: var(--color-bg-light);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.inventory-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+}
+
+.inventory-item.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.inventory-item.equipped::after {
+    content: 'EQUIPPED';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    color: var(--color-success);
+    text-transform: uppercase;
+}
+
+.inventory-item.rarity-common { border-color: var(--rarity-common); }
+.inventory-item.rarity-uncommon { border-color: var(--rarity-uncommon); }
+.inventory-item.rarity-rare { border-color: var(--rarity-rare); }
+.inventory-item.rarity-epic { border-color: var(--rarity-epic); }
+.inventory-item.rarity-legendary { border-color: var(--rarity-legendary); }
+
+.item-preview {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--color-bg-medium);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.item-info-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.item-info-rarity {
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+}
+
+/* Missions */
+.missions-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.missions-section h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.missions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mission-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--color-bg-light);
+    border-radius: 4px;
+    border-left: 3px solid var(--color-bg-medium);
+}
+
+.mission-item.completed {
+    border-left-color: var(--color-success);
+    opacity: 0.7;
+}
+
+.mission-item.progress {
+    border-left-color: var(--color-warning);
+}
+
+.mission-info {
+    flex: 1;
+}
+
+.mission-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.mission-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+}
+
+.mission-progress {
+    font-size: 0.85rem;
+    color: var(--color-primary);
+}
+
+.mission-reward {
+    padding: 0.5rem 1rem;
+    background: var(--color-bg-medium);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--color-primary);
+}
+
+/* Profile */
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--color-bg-light);
+    border-radius: 8px;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-level {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.profile-banner {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-bg-medium);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat-card {
+    padding: 1.5rem;
+    background: var(--color-bg-light);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+}
+
+/* Settings */
+.settings-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.settings-section h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-bg-light);
+}
+
+.settings-section label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-dim);
+}
+
+.settings-section input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+}
+
+.settings-section input[type="range"] {
+    width: 100%;
+}
+
+/* Matchmaking */
+.matchmaking-content {
+    text-align: center;
+}
+
+.matchmaking-content h2 {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+.queue-info {
+    color: var(--color-text-dim);
+    margin: 1rem 0 2rem;
+}
+
+#cancelMatchmaking {
+    margin-top: 2rem;
+}
+
+/* Loading */
+.loading-container {
+    text-align: center;
+}
+
+.loading-container h2 {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+#loadingText {
+    color: var(--color-text-dim);
+}
