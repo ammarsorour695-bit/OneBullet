@@ -4,6 +4,12 @@
 __pycache__/
 *.o
 *.obj
+*.class
+*.exe
+*.dll
+*.so
+*.a
+*.out
 dist/
 build/
 target/
@@ -11,12 +17,12 @@ coverage/
 htmlcov/
 
 # Dependencies
-.venv/
-venv/
 node_modules/
-.julia/
-zig-cache/
-.deps/
+venv/
+.venv/
+.env
+.env.local
+.env.*
 
 # Logs and temp files
 *.log
@@ -36,18 +42,26 @@ zig-cache/
 *.swp
 *.swo
 
-# OS
+# System files
 .DS_Store
 Thumbs.db
 
-# Testing and coverage
-.coverage
+# Coverage
 coverage/
 htmlcov/
-.pytest_cache/
-.mypy_cache/
+.coverage
 
-# Archives
+# Build directories
+dist/
+build/
+target/
+.gradle/
+
+# Python specific
+.mypy_cache/
+.pytest_cache/
+
+# Compressed files
 *.zip
 *.gz
 *.tar
@@ -66,6 +80,10 @@ htmlcov/
 *.Z
 *.lz
 *.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 # Python specific (if any Python files detected later)
 # OS generated files
 .DS_Store
