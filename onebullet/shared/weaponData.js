@@ -1,6 +1,54 @@
 // Weapon data definitions
 import { CONSTANTS } from './constants.js';
 
+export const WEAPON_DATA = {
+    sniper: {
+        id: 'sniper',
+        name: 'ONEBULLET',
+        type: 'sniper',
+        damage: {
+            head: CONSTANTS.DAMAGE_HEADSHOT,
+            body: CONSTANTS.DAMAGE_BODY,
+            limb: CONSTANTS.DAMAGE_LIMB,
+        },
+        fireRate: CONSTANTS.FIRE_COOLDOWN,
+        reloadTime: CONSTANTS.RELOAD_TIME,
+        maxAmmo: 5,
+        maxReserve: 30,
+        zoom: 8,
+        range: 1000,
+        ammoType: 'sniper',
+    },
+    pistol: {
+        id: 'pistol',
+        name: 'Sidearm',
+        type: 'pistol',
+        damage: {
+            head: 75,
+            body: 35,
+            limb: 25,
+        },
+        fireRate: 0.15,
+        reloadTime: 1.5,
+        maxAmmo: 12,
+        maxReserve: 48,
+        zoom: 1.5,
+        range: 50,
+        ammoType: 'pistol',
+    },
+    knife: {
+        id: 'knife',
+        name: 'Combat Knife',
+        type: 'melee',
+        damage: {
+            hit: 50,
+        },
+        fireRate: 0.4,
+        range: 2.5,
+        swingTime: 0.3,
+    },
+};
+
 export const WEAPONS = {
     sniper: {
         id: 'sniper',

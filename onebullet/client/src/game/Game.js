@@ -1,13 +1,14 @@
 // ONEBULLET - Main Game Class
 import * as THREE from 'three';
 import { Player } from '../player/Player.js';
-import { WeaponManager } from '../weapons/WeaponManager.js';
+import { WeaponSystem } from '../weapons/WeaponSystem.js';
 import { InputHandler } from '../core/input/InputHandler.js';
 import { BotManager } from '../bots/BotManager.js';
 import { DesertOutpostMap } from '../maps/DesertOutpostMap.js';
 import { IndustrialYardMap } from '../maps/IndustrialYardMap.js';
 import { MountainBaseMap } from '../maps/MountainBaseMap.js';
 import { CityRooftopsMap } from '../maps/CityRooftopsMap.js';
+import { ForestRuinsMap } from '../maps/ForestRuinsMap.js';
 import { GAME_MODES, CONSTANTS } from '../../shared/constants.js';
 
 export class Game {
@@ -25,7 +26,7 @@ export class Game {
         
         // Game systems
         this.player = null;
-        this.weaponManager = null;
+        this.weaponSystem = null;
         this.inputHandler = null;
         this.botManager = null;
         this.currentMap = null;
@@ -42,6 +43,7 @@ export class Game {
             industrialYard: IndustrialYardMap,
             mountainBase: MountainBaseMap,
             cityRooftops: CityRooftopsMap,
+            forestRuins: ForestRuinsMap,
         };
     }
 
@@ -59,7 +61,7 @@ export class Game {
             
             // Initialize systems
             this.inputHandler = new InputHandler(this);
-            this.weaponManager = new WeaponManager(this);
+            this.weaponSystem = new WeaponSystem(this);
             this.player = new Player(this, true);
             this.botManager = new BotManager(this);
             
@@ -194,7 +196,7 @@ export class Game {
         // Update systems
         this.inputHandler.update(delta);
         this.player.update(delta);
-        this.weaponManager.update(delta);
+        this.weaponSystem.update(delta);
         this.botManager.update(delta);
         
         // Check win condition
