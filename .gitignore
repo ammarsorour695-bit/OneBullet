@@ -7,6 +7,8 @@ __pycache__/
 dist/
 build/
 target/
+coverage/
+htmlcov/
 
 # Dependencies
 .venv/
@@ -25,6 +27,7 @@ zig-cache/
 # Environment
 .env
 .env.local
+*.env.*
 .env.*
 
 # Editors
@@ -63,4 +66,17 @@ htmlcov/
 *.Z
 *.lz
 *.lzo
+# Python specific (if any Python files detected later)
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+.mypy_cache/
 ```
